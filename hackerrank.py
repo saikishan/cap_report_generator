@@ -51,7 +51,10 @@ class Hackerrank:
         print("page_count", pagecount)
         def divide_to_sets(pagecount,no_of_threads):
             share = pagecount // no_of_threads
-            yield (0, 1*share)
+            if share < 1:
+                yield(1,pagecount)
+                return
+            yield (1, 1*share)
             for x in range(1,no_of_threads-1):
                 yield (x*share,(x+1)*share)
             yield((no_of_threads-1)*share,pagecount+1)
