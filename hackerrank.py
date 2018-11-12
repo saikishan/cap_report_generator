@@ -1,8 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import threading
-import time
-import random
+
 class Hackerrank:
     def get_count_of_pages(self, url):
         print("page-count url" + url)

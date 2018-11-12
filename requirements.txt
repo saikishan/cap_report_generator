@@ -1,2 +1,5 @@
+arrow==0.12.1
 beautifulsoup4==4.6.3
 bs4==0.0.1
+python-dateutil==2.7.5
+six==1.11.0

@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import threading
-import time
-import random
 #implementation to be modified
 class Codechef:
     def get_count_of_pages(self, url):
