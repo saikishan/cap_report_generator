@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import threading
-
+import requests
 class Hackerrank:
     def get_count_of_pages(self, url):
         print("page-count url" + url)
@@ -67,3 +67,13 @@ class Hackerrank:
         for x in thread_list:
             x.join()
         return student_dict
+
+    def get_new_students_using_api(self, problem_name, last_timestamp = None):
+        url = "https://www.hackerrank.com/rest/contests/master/challenges/{problem_name}/leaderboard/filter?offset=0&limit=200&include_practice=true&school=Vishnu%20Institute%20Of%20Technology&filter_kinds=school".format(problem_name = problem_name)
+        if last_timestamp:
+            url = "https://www.hackerrank.com/rest/contests/master/challenges/{problem_name}/leaderboard/filter?offset=0&limit=200&include_practice=true&school=Vishnu%20Institute%20Of%20Technology&timestamp=~gt~{last_timestamp}&filter_kinds=school".format(problem_name = problem_name, last_timestamp = last_timestamp)
+        print(url)
+        response = requests.get(url)
+        return response
+    
+        
