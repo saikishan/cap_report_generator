@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import threading
-
+import requests
 class Hackerrank:
     def get_count_of_pages(self, url):
         print("page-count url" + url)
@@ -67,3 +67,27 @@ class Hackerrank:
         for x in thread_list:
             x.join()
         return student_dict
+
+    def get_new_students_using_api(self, url, student_list):
+        current_count = 0
+        rest_url = url.replace("hackerrank.com/","hackerrank.com/rest/contests/master/")
+        current_rest_url = rest_url + "/filter?offset={current_count}page&limit=100&include_practice=true&school=Vishnu%20Institute%20Of%20Technology&filter_kinds=school".format(current_count = current_count)
+        response = requests.get(current_rest_url)
+        data = response.json()
+        total_count = data['total']
+        student_dict = {x: False for x in student_list}
+        while(total_count):
+            for x in data['models']:
+                total_count-=1
+                print(x['hacker'])
+                if x['rank']==1 and x['hacker'] in student_dict:
+                    student_dict[ x['hacker'] ] = True
+            if total_count:
+                current_count+=1
+                current_rest_url = rest_url + "/filter?offset={current_count}page&limit=100&include_practice=true&school=Vishnu%20Institute%20Of%20Technology&filter_kinds=school".format(
+                    current_count=current_count)
+                response = requests.get(current_rest_url)
+                data = response.json()
+        return student_dict
+    
+        

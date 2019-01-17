@@ -75,7 +75,7 @@ if __name__ == '__main__':
             report_file.write(report_header)
             for question in generate_questions(assignment_file_name):
                 if question["platform"] == 'hacker_rank':
-                    result_dict = hackerrank_scraper.get_filtered_list_from_webpage(question["link"],hacker_rank_dict.keys())
+                    result_dict = hackerrank_scraper.get_new_students_using_api(question["link"],hacker_rank_dict.keys())
                     for x in result_dict.keys():
                         id = hacker_rank_dict[x]
                         student = students_dict[id]
