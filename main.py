@@ -1,5 +1,5 @@
-from hackerrank import Hackerrank
-from codechef import Codechef
+from platforms.hackerrank import Hackerrank
+from platforms.codechef import Codechef
 from config  import question_file_data,question_dir,result_dir
 import arrow
 hackerrank_scraper = Hackerrank()
