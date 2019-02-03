@@ -15,7 +15,7 @@ class GenericEngine(ABC):
         pass
 
     @abstractmethod
-    def generate_request_url(self, id=None):
+    def generate_request_url(self, **kwargs):
         #to generate the leaderbord url from the
         pass
 
