@@ -1,11 +1,6 @@
 import requests,math
-from platforms.generic_engine import GenericEngine
-from platforms.generic_driver import GenericDriver
-from utils.my_logger import MyLogger
-import logging
-logging.setLoggerClass(MyLogger)
-logging.basicConfig()
-log = logging.getLogger(__name__)
+from .generic_engine import GenericEngine
+from .generic_driver import GenericDriver
 
 """
 after per the study made on the hackerrank
@@ -27,12 +22,10 @@ class HackerRankEngine(GenericEngine):
         return current_rest_url.format(off_set=(kwargs.get('pg_id',0)*students_per_request),limit=((kwargs.get('pg_id',0)+1)*students_per_request),school=kwargs.get('school'))
 
     def get_page_data(self, url):
-        log.debug("calling for page"+ url)
         while True:
             try:
                 response = requests.get(url)
             except Exception as e:
-                log.error("exception in page_request", Excepion = e)
                 continue
             break
         data = response.json()
@@ -73,6 +66,8 @@ class HackerRankEngine(GenericEngine):
 
 class HackerRankDriver(GenericDriver):
     def __init__(self, question_url, given_users, schools):
+        if schools == None:
+            raise Exception("Hackerrank requires schools for scraping of the results")
         leaderboard_url = question_url.replace('/problem', '/leaderboard')
         super().__init__(leaderboard_url , given_users, HackerRankEngine(leaderboard_url, given_users, schools))
 
@@ -84,6 +79,6 @@ def tester():
     question ='https://www.hackerrank.com/challenges/a-very-big-sum/problem'
     users = ["13PA1A05A4", "VinayV9"]
     hd = HackerRankDriver(question, users, ['Vishnu%20Institute%20Of%20Technology'])
-    print (hd.get_results())
+    print(hd.get_results())
 
 tester()
