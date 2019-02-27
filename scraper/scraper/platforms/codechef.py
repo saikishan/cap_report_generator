@@ -7,7 +7,7 @@ class Codechef:
         print("page-count url" + url)
         req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         content = urlopen(req).read()
-        soup  = BeautifulSoup(content,features="html.parser")
+        soup = BeautifulSoup(content,features="html.parser")
         line = soup.body.find(class_="pageinfo", recursive=True).text
         number = line[line.find('f')+1:]
         page_count = int(number)
