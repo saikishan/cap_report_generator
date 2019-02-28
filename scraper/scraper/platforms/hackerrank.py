@@ -17,6 +17,7 @@ class HackerRankEngine(GenericEngine):
 
     def generate_request_url(self, **kwargs):
         rest_url = self.base_url.replace("hackerrank.com/", "hackerrank.com/rest/contests/master/")
+        kwargs['school'] = kwargs['school'].replace(" ", "%20")
         current_rest_url = rest_url + "/filter?offset={off_set}&limit={limit}&&include_practice=true&filter_kinds=school&school={school}"
         students_per_request = self.config["students_per_request"]
         return current_rest_url.format(off_set=(kwargs.get('pg_id',0)*students_per_request),limit=((kwargs.get('pg_id',0)+1)*students_per_request),school=kwargs.get('school'))
@@ -78,7 +79,7 @@ class HackerRankDriver(GenericDriver):
 def tester():
     question ='https://www.hackerrank.com/challenges/a-very-big-sum/problem'
     users = ["13PA1A05A4", "VinayV9"]
-    hd = HackerRankDriver(question, users, ['Vishnu%20Institute%20Of%20Technology'])
+    hd = HackerRankDriver(question, users, ['Vishnu Institute Of Technology'])
     print(hd.get_results())
 
 tester()
