@@ -54,7 +54,7 @@ class HackerRankEngine(GenericEngine):
         while True:
             page_users = self.get_users_from_page(page_data)
             self.update_matching_list(page_users)
-            if (pg == pages_count):
+            if (pg >= pages_count):
                 break
             url = self.generate_request_url(pg_id=pg, school=school)
             page_data = self.get_page_data(url)

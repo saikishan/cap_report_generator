@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 setup(name='scraper',
       version='0.1',
       description='scraper for the web platforms',
@@ -6,7 +6,7 @@ setup(name='scraper',
       author='sai kishan',
       author_email='saikishan2008@gmail.com',
       license='MIT',
-      packages=['scraper'],
+      packages=find_packages(),
       install_requires=[
             'arrow==0.12.1',
             'beautifulsoup4==4.6.3',

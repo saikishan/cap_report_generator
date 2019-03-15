@@ -1,4 +1,4 @@
-from .platforms.hackerrank import HackerRankDriver
+from .platforms import HackerRankDriver
 
 class Scrapie:
     def get_driver(self,question, students, colleges = None, last_scraped = None):
