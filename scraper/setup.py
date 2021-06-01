@@ -16,5 +16,5 @@ setup(name='scraper',
             'idna==2.8',
             'python-dateutil==2.7.5',
             'requests==2.21.0',
-            'urllib3==1.24.1'],
+            'urllib3==1.26.5'],
       zip_safe=False)
